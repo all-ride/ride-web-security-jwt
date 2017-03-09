@@ -1,0 +1,23 @@
+{
+    "name": "ride/web-security-jwt",
+    "description": "Implements Json Web Token (JWT) in the security layer of a Ride web application.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joris Vandeweerd",
+            "email": "joris@statik.be"
+        }
+    ],
+    "require": {
+        "ride/app": "^1.0.0",
+        "ride/lib-security": "^1.0.0",
+        "ride/web": "^1.0.0",
+        "ride/web-security": "^1.0.0",
+        "firebase/php-jwt": "v4.0.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "ride\\web\\security\\": ["src/"]
+        }
+    }
+}

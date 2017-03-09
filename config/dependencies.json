@@ -1,0 +1,127 @@
+{
+    "dependencies": [
+        {
+            "class": "ride\\web\\security\\controller\\JwtController",
+            "id": "jwt",
+            "calls": [
+                {
+                    "method": "setAuthenticator",
+                    "arguments": [
+                        {
+                            "name": "authenticator",
+                            "type": "dependency",
+                            "properties": {
+                                "interface": "ride\\library\\security\\authenticator\\Authenticator",
+                                "id": "jwt"
+                            }
+                        },
+                        {
+                            "name": "expirationTime",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "security.jwt.exp"
+                            }
+                        },
+                        {
+                            "name": "notBeforeTime",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "security.jwt.nbf"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "interfaces": ["ride\\library\\security\\authenticator\\Authenticator", "ride\\web\\security\\authenticator\\JwtAuthenticator"],
+            "class": "ride\\web\\security\\authenticator\\JwtAuthenticator",
+            "id": "jwt",
+            "calls": [
+                "setLog",
+                {
+                    "method": "setAlgorithm",
+                    "arguments": [
+                        {
+                            "name": "algorithm",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "security.jwt.algorithm",
+                                "default": "HS256"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setSecret",
+                    "arguments": [
+                        {
+                            "name": "secret",
+                            "type": "call",
+                            "properties": {
+                                "interface": "ride\\application\\system\\System",
+                                "method": "getSecretKey"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setIssuer",
+                    "arguments": [
+                        {
+                            "name": "issuer",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "security.jwt.issuer"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setSubject",
+                    "arguments": [
+                        {
+                            "name": "subject",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "security.jwt.subject"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "method": "setAudience",
+                    "arguments": [
+                        {
+                            "name": "audience",
+                            "type": "parameter",
+                            "properties": {
+                                "key": "security.jwt.audience"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "interfaces": "ride\\library\\security\\authenticator\\Authenticator",
+            "extends": "chain",
+            "id": "chain",
+            "calls": [
+                {
+                    "method": "addAuthenticator",
+                    "arguments": [
+                        {
+                            "name": "authenticator",
+                            "type": "dependency",
+                            "properties": {
+                                "interface": "ride\\library\\security\\authenticator\\Authenticator",
+                                "id": "jwt"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

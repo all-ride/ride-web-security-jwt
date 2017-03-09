@@ -1,0 +1,6 @@
+security.jwt.algorithm          Algorithm of the Json Web Token (defaults to HS256)
+security.jwt.audience           Audience of the Json Web Token (optional)
+security.jwt.exp                Timestamp when the token is expired or an offset in seconds with the current time by prepending a + (optional)
+security.jwt.issuer             Issuer of the Json Web Token (optional)
+security.jwt.nbf                Before this timestamp the token is invalid, can also be an offset in seconds with the current time by prepending a + (optional)
+security.jwt.subject            Subject of the Json Web Token (optional)

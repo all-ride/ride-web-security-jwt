@@ -1,0 +1,8 @@
+{
+    "app.response.pre": [
+        {
+            "interface": "ride\\web\\security\\JwtApplicationListener",
+            "method": "addAcaoHeader"
+        }
+    ]
+}
